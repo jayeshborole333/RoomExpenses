@@ -1,0 +1,168 @@
+/* Header Styling */
+header {
+    display: flex;
+    padding: 30px;
+    background: linear-gradient(to right, #273c3d, #3d3e57);
+    color: rgb(255, 255, 255);
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease-in-out, headerPulse 2s infinite alternate;
+}
+
+/* Navigation Bar */
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Menu Icon */
+nav span {
+    cursor: pointer;
+    font-size: 30px;
+}
+
+
+/* Room and Expenses Styling */
+.app-title {
+    display: flex;
+    align-items: center;
+    font-size: 23px;
+    font-weight: bold;
+    gap: 13px;
+}
+
+/* Room Gradient Effect */
+.room-text {
+    background: linear-gradient(45deg, #FF5733, #FFBD33, #33FF57, #33A1FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Expenses Styling */
+.expenses-text {
+    color: #3498db; 
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Hover Effect */
+nav span:hover {
+    transform: scale(1.1);
+    transition: 0.3s ease-in-out;
+}
+
+
+/* Navigation List */
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+/* Navigation Items */
+nav ul li {
+    cursor: pointer;
+    font-size: 20px;
+    position: relative;
+    transition: all 0.4s ease-in-out;
+    animation: navItemFadeIn 1s ease-in-out forwards;
+    opacity: 0;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+/* Underline Effect */
+nav ul li::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #ffcc00, #ff6600, #ff0000);
+    transition: width 0.4s ease-in-out;
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 3px;
+}
+
+/* Hover Effect - Smooth Scaling & Glowing Border */
+nav ul li:hover {
+    color: #ffff00;
+    transform: translateY(-2px) scale(1.05);
+    background: rgba(255, 165, 0, 0.2);
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.8);
+    border: 2px solid rgba(255, 140, 0, 0.7);
+}
+
+/* Underline Animation */
+nav ul li:hover::after {
+    width: 100%;
+}
+
+/* Glowing Pulse Effect */
+@keyframes glowingPulse {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 140, 0, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 69, 0, 0.9);
+    }
+}
+
+/* Active Link Styling */
+nav ul li.active {
+    background: rgba(255, 165, 0, 0.3);
+    border: 2px solid rgba(255, 140, 0, 0.9);
+    animation: glowingPulse 1s infinite alternate;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes headerPulse {
+    0% {
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    }
+}
+
+@keyframes navItemFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Delay the nav item animations for a cascading effect */
+nav ul li:nth-child(1) { animation-delay: 0.2s; }
+nav ul li:nth-child(2) { animation-delay: 0.4s; }
+nav ul li:nth-child(3) { animation-delay: 0.6s; }
+nav ul li:nth-child(4) { animation-delay: 0.8s; }

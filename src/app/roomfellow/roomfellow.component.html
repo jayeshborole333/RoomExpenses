@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="add-fellow-container">
+    <h3>{{ isEditing ? 'Edit Fellow' : 'Add New Fellow' }}</h3>
+    <form (ngSubmit)="isEditing ? updateRoomFellow() : addRoomFellow()">
+      <input type="text" [(ngModel)]="newFellow.name" name="name" placeholder="Name" required>
+      <input type="email" [(ngModel)]="newFellow.email" name="email" placeholder="Email" required>
+      <input type="tel" [(ngModel)]="newFellow.phone" name="phone" placeholder="Mobile" required>
+      <button type="submit" class="btn-add">{{ isEditing ? 'Update Fellow' : 'Add Fellow' }}</button>
+    </form>
+  </div>
+
+  <h2 class="title">Room Fellow List</h2>
+  <div class="table-container">
+    <table *ngIf="roomFellows.length > 0" class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fellow of roomFellows">
+          <td>{{ fellow.id }}</td>
+          <td>{{ fellow.name }}</td>
+          <td>{{ fellow.email }}</td>
+          <td>{{ fellow.phone }}</td>
+          <td>
+            <div class="btn-container">
+              <button class="btn-edit" (click)="editRoomFellow(fellow)">Edit</button>
+              <button class="btn-delete" (click)="deleteRoomfellow(fellow.id)">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

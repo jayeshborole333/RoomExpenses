@@ -1,0 +1,87 @@
+<div class="expense-container">
+  <h2>Room Expense Management</h2>
+
+  <div class="expense-wrapper">
+    <!-- Expense Form Section -->
+    <div class="expense-form">
+      <form *ngIf="roomExpenseForm" [formGroup]="roomExpenseForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Room Rent:</label>
+          <input type="number" formControlName="roomRent" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label>Vegetable:</label>
+          <input type="number" formControlName="vegetable" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label>D-Mart:</label>
+          <input type="number" formControlName="d_mart" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label>WiFi:</label>
+          <input type="number" formControlName="wifi" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label>Electricity Bill:</label>
+          <input type="number" formControlName="electricityBill" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label>Gas:</label>
+          <input type="number" formControlName="gas" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label for="month">Select Month & Year:</label>
+          <div class="month-selector">
+            <select id="month" [(ngModel)]="selectedMonth" (change)="onMonthChange()" class="form-control animated-select">
+              <option *ngFor="let month of monthsList" [value]="month.value">{{ month.name }}</option>
+            </select>
+            <button type="button" class="btn-animated" (click)="setCurrentMonth()">📅 Set Current</button>
+          </div>
+        </div>                    
+
+        <button type="submit" class="btn btn-primary">Add Expense</button>
+      </form>
+    </div>
+
+    <!-- Expense Table Section -->
+    <div class="expense-table">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Room Rent</th>
+            <th>Vegetable</th>
+            <th>D-Mart</th>
+            <th>WiFi</th>
+            <th>Electricity Bill</th>
+            <th>Gas</th>
+            <th>Month</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let expense of expenses">
+            <td>{{ expense.displayId }}</td>
+            <td>{{ expense.roomRent }}</td>
+            <td>{{ expense.vegetable }}</td>
+            <td>{{ expense.d_mart }}</td>
+            <td>{{ expense.wifi }}</td>
+            <td>{{ expense.electricityBill }}</td>
+            <td>{{ expense.gas }}</td>
+            <td>{{ expense.month }}</td>
+            <td>
+              <button (click)="deleteRoomExpense(expense.id)" class="btn-delete">Delete</button>
+              <button (click)="generateInvoice(expense.id)" class="btn-generate">Generate Invoice</button>
+            </td>            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
